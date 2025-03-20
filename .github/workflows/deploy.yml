@@ -23,8 +23,8 @@ jobs:
 
       - name: Build and Deploy Application
         run: |
-          echo "Building and deploying application..."
-          # Add deployment commands (e.g., SCP, SSH, Docker push, etc.)
+          docker build -t sample-python-app .
+          docker images
 
       - name: Notify Deployment Success
         run: echo "Deployment successful for ${{ github.ref }}"
