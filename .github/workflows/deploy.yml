@@ -1,0 +1,30 @@
+name: Tag-Based Deployment
+
+on:
+  push:
+    tags:
+      - 'v*'  # Triggers the workflow when a tag starting with "v" is pushed (e.g., v1.0.0)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # The OS used for the job execution
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Extract Version from Tag
+        run: echo "Deploying version ${{ github.ref_name }}"
+
+      - name: Set Up Dependencies (Optional)
+        run: |
+          echo "Setting up dependencies..."
+          # Add setup commands here (e.g., install Docker, Node.js, etc.)
+
+      - name: Build and Deploy Application
+        run: |
+          echo "Building and deploying application..."
+          # Add deployment commands (e.g., SCP, SSH, Docker push, etc.)
+
+      - name: Notify Deployment Success
+        run: echo "Deployment successful for ${{ github.ref }}"
